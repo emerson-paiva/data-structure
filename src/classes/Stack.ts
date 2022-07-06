@@ -1,9 +1,5 @@
 export class Stack<T> {
-  private items: T[] = [];
-
-  constructor(items: T[] = []) {
-    this.items = items;
-  }
+  constructor(private items: T[] = []) {}
 
   push = (item: T) => this.items.push(item);
 
