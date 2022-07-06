@@ -5,31 +5,17 @@ export class Stack<T> {
     this.items = items;
   }
 
-  push(item: T) {
-    this.items.push(item);
-  }
+  push = (item: T) => this.items.push(item);
 
-  pop() {
-    return this.items.pop();
-  }
+  pop = () => this.items.pop();
 
-  peek() {
-    return this.items.at(-1);
-  }
+  peek = () => this.items.at(-1);
 
-  isEmpty() {
-    return this.items.length === 0;
-  }
+  isEmpty = () => this.items.length === 0;
 
-  clear() {
-    this.items = [];
-  }
+  size = () => this.items.length;
 
-  size() {
-    return this.items.length;
-  }
+  clear = () => (this.items = []);
 
-  print() {
-    console.log(this.items.toString());
-  }
+  print = () => console.log(this.items.toString());
 }
