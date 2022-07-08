@@ -1,3 +1,5 @@
-import { decimalToBinary } from './demos/stack/decimalToBinary';
+import { baseConvert } from './demos/stack/baseConvert';
 
-console.log(decimalToBinary(45));
+console.log(baseConvert(45));
+console.log(baseConvert(45, 8));
+console.log(baseConvert(45, 16));
