@@ -21,19 +21,19 @@ describe('LinkedList', () => {
     const linkedList = new LinkedList(50);
 
     expect(linkedList.size()).toBe(1);
-    expect(linkedList.print()).toStrictEqual([50]);
+    expect(linkedList.print()).toEqual([50]);
 
     linkedList.prepend(10);
 
     expect(linkedList.size()).toBe(2);
-    expect(linkedList.print()).toStrictEqual([10, 50]);
+    expect(linkedList.print()).toEqual([10, 50]);
   });
 
   it('should insert element at position', () => {
     const linkedList = new LinkedList(50);
 
     expect(linkedList.size()).toBe(1);
-    expect(linkedList.print()).toStrictEqual([50]);
+    expect(linkedList.print()).toEqual([50]);
 
     linkedList.append(10);
     linkedList.append(123);
@@ -41,6 +41,19 @@ describe('LinkedList', () => {
     linkedList.insert(2, 66);
 
     expect(linkedList.size()).toBe(5);
-    expect(linkedList.print()).toStrictEqual([50, 10, 66, 123, 444]);
+    expect(linkedList.print()).toEqual([50, 10, 66, 123, 444]);
+  });
+
+  it('should remove an item from the LinkedList', () => {
+    const linkedList = new LinkedList(50);
+
+    linkedList.append(10);
+    linkedList.append(11);
+    linkedList.append(12);
+
+    linkedList.removeAt(2);
+
+    expect(linkedList.size()).toBe(3);
+    expect(linkedList.print()).toEqual([50, 10, 12]);
   });
 });

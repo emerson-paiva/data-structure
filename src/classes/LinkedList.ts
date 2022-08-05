@@ -62,7 +62,7 @@ export class LinkedList<T> {
   insert = (position: number, element: T) => {
     const node = new Node(element);
     let current = this.head;
-    let count = 0;
+    let counter = 0;
 
     if (position >= this.length) {
       this.append(element);
@@ -74,9 +74,8 @@ export class LinkedList<T> {
       return this;
     }
 
-    while (count !== position - 1) {
+    while (counter++ !== position - 1) {
       current = current.next;
-      count++;
     }
 
     const holdingPointer = current.next;
@@ -95,17 +94,13 @@ export class LinkedList<T> {
     if (position === 0) {
       this.head = current?.next;
     } else {
-      let previous = null;
-      let index = 0;
+      let counter = 0;
 
-      while (index++ < position) {
-        previous = current;
-        current = current ? current.next : null;
+      while (counter++ !== position - 1) {
+        current = current.next;
       }
 
-      if (previous) {
-        previous.next = current?.next || null;
-      }
+      current.next = current.next?.next || null;
     }
 
     this.length--;
