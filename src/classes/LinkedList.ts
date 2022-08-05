@@ -85,26 +85,26 @@ export class LinkedList<T> {
   };
 
   removeAt = (position: number) => {
-    if (position < 0 || position > this.length) return null;
+    if (position < 0 || position > this.length) return;
 
-    if (!this.head) return null;
+    if (!this.head) return;
 
-    let current: Node<T> | null = this.head;
+    let leader: Node<T> | null = this.head;
 
     if (position === 0) {
-      this.head = current?.next;
+      this.head = leader?.next;
     } else {
       let counter = 0;
 
       while (counter++ !== position - 1) {
-        current = current.next;
+        leader = leader.next;
       }
 
-      current.next = current.next?.next || null;
+      const unwantedNode = leader.next;
+      leader.next = unwantedNode?.next;
     }
 
     this.length--;
-    return current?.element;
   };
 
   remove = (element: T) => {};
