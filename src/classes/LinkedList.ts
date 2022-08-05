@@ -15,14 +15,18 @@ export class LinkedList<T> {
     this.tail = this.head;
   }
 
+  private initList = (node: Node<T> | null) => {
+    this.head = node;
+    this.tail = node;
+    this.length++;
+    return this;
+  };
+
   append = (element: T) => {
     const node = new Node(element);
 
     if (this.head === null) {
-      this.head = node;
-      this.tail = node;
-      this.length++;
-      return this;
+      return this.initList(node);
     }
 
     // O(n)
@@ -45,22 +49,41 @@ export class LinkedList<T> {
     const node = new Node(element);
 
     if (this.head === null) {
-      this.head = node;
-      this.tail = node;
-      this.length++;
-
-      return this;
+      return this.initList(node);
     }
 
-    const currentHead = this.head;
+    node.next = this.head;
     this.head = node;
-    this.head.next = currentHead;
     this.length++;
 
     return this;
   };
 
-  insert = (position: number, element: T) => {};
+  insert = (position: number, element: T) => {
+    const node = new Node(element);
+    let current = this.head;
+    let count = 0;
+
+    if (position >= this.length) {
+      this.append(element);
+      return this;
+    }
+
+    if (position === 0) {
+      this.prepend(element);
+      return this;
+    }
+
+    while (count !== position - 1) {
+      current = current.next;
+      count++;
+    }
+
+    const holdingPointer = current.next;
+    current.next = node;
+    node.next = holdingPointer;
+    this.length++;
+  };
 
   removeAt = (position: number) => {
     if (position < 0 || position > this.length) return null;
@@ -99,5 +122,15 @@ export class LinkedList<T> {
 
   toString = () => {};
 
-  print = () => {};
+  print = () => {
+    const elements = [];
+    let current = this.head;
+
+    while (current && current.element !== null) {
+      elements.push(current.element);
+      current = current.next;
+    }
+
+    return elements;
+  };
 }
