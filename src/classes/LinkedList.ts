@@ -5,26 +5,59 @@ export class Node<T> {
 export class LinkedList<T> {
   private length = 0;
   private head: Node<T> | null = null;
+  private tail: Node<T> | null = null;
 
-  constructor() {}
+  constructor(value: T | null = null) {
+    if (value !== null) {
+      this.head = new Node(value);
+      this.length++;
+    }
+    this.tail = this.head;
+  }
 
   append = (element: T) => {
     const node = new Node(element);
 
     if (this.head === null) {
       this.head = node;
+      this.tail = node;
       this.length++;
-      return;
+      return this;
     }
 
-    let current = this.head;
+    // O(n)
+    // let current = this.head;
+    // while (current.next) {
+    //   current = current.next;
+    // }
+    // current.next = node;
 
-    while (current.next) {
-      current = current.next;
+    // O(1)
+    if (this.tail) {
+      this.tail.next = node;
     }
-
-    current.next = node;
+    this.tail = node;
     this.length++;
+    return this;
+  };
+
+  prepend = (element: T) => {
+    const node = new Node(element);
+
+    if (this.head === null) {
+      this.head = node;
+      this.tail = node;
+      this.length++;
+
+      return this;
+    }
+
+    const currentHead = this.head;
+    this.head = node;
+    this.head.next = currentHead;
+    this.length++;
+
+    return this;
   };
 
   insert = (position: number, element: T) => {};
@@ -62,7 +95,7 @@ export class LinkedList<T> {
 
   isEmpty = () => {};
 
-  size = () => {};
+  size = () => this.length;
 
   toString = () => {};
 
