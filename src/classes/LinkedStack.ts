@@ -1,6 +1,7 @@
 import { Node } from './LinkedList';
 
-export class StackWithLinkedList<T> {
+// LIFO
+export class LinkedStack<T> {
   private length = 0;
   private top: Node<T> = null;
 
@@ -42,7 +43,7 @@ export class StackWithLinkedList<T> {
   }
 }
 
-const myStack = new StackWithLinkedList();
+const myStack = new LinkedStack();
 
 myStack.push('Google');
 myStack.push('Udemy');
