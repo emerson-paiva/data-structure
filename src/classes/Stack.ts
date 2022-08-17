@@ -11,7 +11,9 @@ export class Stack<T> {
 
   size = () => this.items.length;
 
-  clear = () => (this.items = []);
+  clear = () => {
+    this.items = [];
+  };
 
   print = () => console.log(this.items.toString());
 }

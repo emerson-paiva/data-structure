@@ -61,7 +61,7 @@ export class LinkedList<T> {
 
   insert = (position: number, element: T) => {
     const node = new Node(element);
-    let current = this.head;
+    let current = this.head as Node<T>;
     let counter = 0;
 
     if (position >= this.length) {
@@ -75,7 +75,9 @@ export class LinkedList<T> {
     }
 
     while (counter++ !== position - 1) {
-      current = current.next;
+      if (current.next !== null) {
+        current = current.next;
+      }
     }
 
     const holdingPointer = current.next;
@@ -89,7 +91,7 @@ export class LinkedList<T> {
 
     if (!this.head) return;
 
-    let leader: Node<T> | null = this.head;
+    let leader = this.head as Node<T>;
 
     if (position === 0) {
       this.head = leader?.next;
@@ -97,17 +99,21 @@ export class LinkedList<T> {
       let counter = 0;
 
       while (counter++ !== position - 1) {
-        leader = leader.next;
+        if (leader.next !== null) {
+          leader = leader.next;
+        }
       }
 
       const unwantedNode = leader.next;
-      leader.next = unwantedNode?.next;
+      leader.next = unwantedNode?.next || null;
     }
 
     this.length--;
   };
 
   remove = (element: T) => {};
+
+  reverse = () => {};
 
   indexOf = (element: T) => {};
 
