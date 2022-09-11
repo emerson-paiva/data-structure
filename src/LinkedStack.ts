@@ -3,7 +3,7 @@ import { Node } from './LinkedList';
 // LIFO
 export class LinkedStack<T> {
   private length = 0;
-  private top: Node<T> = null;
+  private top: Node<T> | null = null;
 
   peek() {
     return this.top;
@@ -32,8 +32,10 @@ export class LinkedStack<T> {
 
     const holdingPointer = this.top;
 
-    this.top = this.top.next;
-    this.length--;
+    if (this.top) {
+      this.top = this.top.next;
+      this.length--;
+    }
 
     return holdingPointer;
   }

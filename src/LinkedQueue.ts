@@ -3,8 +3,8 @@ import { Node } from './LinkedList';
 // FIFO
 export class LinkedQueue<T> {
   private length = 0;
-  private first: Node<T> = null;
-  private last: Node<T> = null;
+  private first: Node<T> | null = null;
+  private last: Node<T> | null = null;
 
   peek() {
     return this.last;
@@ -17,7 +17,9 @@ export class LinkedQueue<T> {
       this.first = nodeToEqueue;
       this.last = nodeToEqueue;
     } else {
-      this.last.next = nodeToEqueue;
+      if (this.last) {
+        this.last.next = nodeToEqueue;
+      }
       this.last = nodeToEqueue;
     }
 
